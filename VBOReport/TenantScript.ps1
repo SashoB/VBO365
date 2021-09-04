@@ -15,15 +15,19 @@ $URL = "https://www.example.com/VBOReport/"
 $LicenseDetails = Get-VBOLicense
 $UsedLicenses = $LicenseDetails.UsedNumber
 $TotalLicenses = $LicenseDetails.TotalNumber
+$ExpirationDate = $($LicenseDetails.ExpirationDate).ToString("yyyy-MM-dd")
+$LicenseType = $LicenseDetails.Type
 
 $Body = @{
     TenantName = $TenantName
     TenantId = $TenantId
     UsedLicenses =$UsedLicenses
     TotalLicenses = $TotalLicenses
-    LicenseDetails = ($LicenseDetails | ConvertTo-Json)
+    ExpirationDate = $ExpirationDate
+    LicenseType = $LicenseType
 }
 
 Invoke-RestMethod -Method 'Post' -Uri $URL -Body $body
 
 Stop-Transcript
+
