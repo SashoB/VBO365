@@ -3,6 +3,7 @@ CREATE TABLE `VBOTenants` (
 `TenantName` varchar(128) CHARACTER SET utf8 COLLATE utf8_slovenian_ci NOT NULL,
 `TenantId` varchar(32) CHARACTER SET utf8 COLLATE utf8_slovenian_ci NOT NULL,
 `DateAdded` datetime NULL,
+`Active` int(1) NULL DEFAULT 1,
 PRIMARY KEY (`id`, `TenantName`, `TenantId`) ,
 UNIQUE INDEX `TenantName` (`TenantName` ASC),
 UNIQUE INDEX `TenantId` (`TenantId` ASC)
@@ -19,4 +20,3 @@ PRIMARY KEY (`id`)
 );
 
 ALTER TABLE `VBOReports` ADD CONSTRAINT `fk_VBOReports_VBOTenants_1` FOREIGN KEY (`TenantId`) REFERENCES `VBOTenants` (`TenantId`);
-
