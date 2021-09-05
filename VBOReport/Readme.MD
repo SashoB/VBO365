@@ -17,3 +17,21 @@ Set argument to (without single quotes) '-WindowStyle Hidden -File "C:\<path to 
 At finish select also to open Properties dialog
 In the Properties set which user should run the task if not current and select to run wheter user is logged on or not
 ```
+
+## VBOReporting.sql
+Import VBOReporting.sql to MySQL installed on the server where you want to collect reports. You can do it on VBO Self-Service portal server.
+
+## MonthlyCronInsert.php
+Copy file MonthlyCronInsert.php to the same server as MySQL script from above. You can put it whereever you want.
+After that create Cron using command
+```
+crontab -e
+```
+I Added following line, which will run script every 1 day of the month at 1 AM.
+```
+0 1 1 * * php /-path-to-script-/MonthlyCronInsert.php
+```
+
+## ShowLastReport.php
+Put file ShowLastReport.php in the folder accessible from WEB. 
+*File is not protected so it shows sensible data, protect it your way or use .htaccess (https://www.lcn.com/support/articles/how-to-password-protect-a-folder-on-your-website-with-htaccess/)
